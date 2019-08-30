@@ -83,7 +83,7 @@
 .tester{font-style: italic }
 
 
-.btnnew {
+.btnnew,.btnhome {
   background-color:black;
   border: none;
   color: white;
@@ -151,7 +151,7 @@
                   
                   // Home button for going back to main feed
                   
-                  var $homeButton = $("<input class='btn home' type=button value='Home'>");
+                  var $homeButton = $("<input class='btnhome' type=button value='Home'>");
                   $homeButton.on('click', function(event){
                      event.preventDefault();
                      $('.timeline').remove();
