@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Basic Bootstrap Template</title>
+    <!-- Bootstrap CSS file -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
+
+</head>
+
+<body>
+    <h1 class ="text-center twid">Twiddler est 1932</h1>
+    <div class="alert alert-secondary text-center" role="alert">
+            "Twiddle so good Mom would approve" 
+          </div>
+
+          
+          <div class="container-fluid">
+                <div class="row tweets">
+                    <div class="col-md-8 main ">
+                    </div>
+                    <div class="col-md-4 newfeed">
+
+                            <img src="news.jpg" alt="newsboy" height="300" width="300">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 tester">
+
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+<!-- 
+          <div class='tweets'>
+                <section class ='main'>
+                </section>
+                <section class ='newfeed'>                    
+              </section> -->
+
+              </div>
+        <style>
+        .main {
+            overflow: auto; 
+            width:500px; height:250px;
+            background-color: #D3D3D3;
+            padding-left:auto;
+            padding-right:auto; 
+
+   
+ 
+}
+
+.test{
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif    
+
+
+}
+
+.twid{
+  
+  font-family: 'Courier New', Courier, monospace
+
+
+}
+
+.tweets{ padding-left:50px;}
+
+.tester{font-style: italic }
+
+
+.btnnew {
+  background-color:black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+        
+        </style>
+
+    <script>
+                $(document).ready(() => {
+                        
+                  var $body = $('.tweets');
+                  // $body.html('');
+            
+          
+                 var index = streams.home.length - 1;
+                while(index >= 0){
+                var tweet = streams.home[index];
+
+          
+                    var $tweet = $('<div class=tweet></div>');
+                    var $user = $('<p class=user></p>');
+                    var $message = $('<p class=message></p>');
+                    var $dateTime = $('<span class=dateTime></span>');
+                
+                    $tweet.appendTo('.main');
+                    $user.addClass(tweet.user).attr('data-user', tweet.user).text('@' + tweet.user + ' ').appendTo($tweet).append(tweet.created_at.toUTCString());
+                    $message.text(tweet.message).appendTo($tweet);
+                    $dateTime.attr('data-livestamp', tweet.created_at.toUTCString()).appendTo($tweet);
+                    $(tweet.user).addClass('tester')
+                    index -= 1;
+
+                  }
+            
+                
+<<<<<<< HEAD
+                   
+=======
+                  
+>>>>>>> a6c83bf150d13e06751fb410026db172df416db2
+                  
+                  // button for getting new tweets
+                  
+                  var $button = $("<input class='btnnew' type=button value='Check New Tweet'>");
+                  $button.appendTo($body);
+                  $button.on('click', function () {
+                    generateRandomTweet();
+                    
+                    var newTweet = streams.home.pop();
+                    
+                    var $newTweet = $('<div class= tweet ></div>');
+                    var $newUser = $('<p class=user></p>');
+                    var $newMessage = $('<p class=message></p>');
+                    var $newDateTime = $('<span class=dateTime></span>');
+                    
+                    $newTweet.appendTo('.newfeed');
+                    $newUser.addClass(newTweet.user).attr('data-user', newTweet.user).text('@' + newTweet.user + ' ').appendTo($newTweet);
+                    $newMessage.text(newTweet.message).appendTo($newTweet).append(tweet.created_at.toUTCString());//// adding date to new tweet
+                    $newDateTime.attr('data-livestamp', new Date().toUTCString()).appendTo($newTweet);
+                    
+                    // $(this).before($newTweet);
+                  });
+                  
+                  // Home button for going back to main feed
+                  
+                  var $homeButton = $("<input class='btn home' type=button value='Home'>");
+                  $homeButton.on('click', function(event){
+                     event.preventDefault();
+                     $('.timeline').remove();
+                     $('div').show(400);
+                     $('.new').show(400);
+                     $homeButton.hide(400);
+                  });
+                  $homeButton.insertAfter($button).hide();
+                  
+                  
+                  // user timeline
+                  
+                  $('.tweets').on('click', '.tweet .user', function(event){
+                    event.preventDefault();
+                    
+                    var user = $(this).data('user');
+                    
+                    $('.timeline').remove();
+                    var $timeline = $('<h1 class=timeline style="color:blue;text-align:center; font-family:Courier">'+ user +'\'s Timeline</h1>');
+                    $timeline.prependTo($body);
+                    $('.new').hide();
+                    $homeButton.show(400);
+                    
+                    $('.tweet').not("div:contains('" + user + "')").hide(400);
+                    $("div:contains('" + user + "')").show(400);
+                    
+                  });
+                  
+                  
+                  // allow users to tweet
+                  
+                  var $textarea = $("<textarea placeholder='Enter something funny :)' id='text' name='text' rows='4' style='overflow: hidden; word-wrap: break-word; resize: none; height: 160px;'></textarea>");
+                  $textarea.appendTo('#submit');
+                  
+                  var $submitButton = $("<input class='btn submit' type='button' value='Tweet Now!'>")
+                  $submitButton.insertAfter($textarea);
+                  
+                  
+                  $submitButton.on('click', function(){
+                    
+                    var $newTweet = $('<div class=tweet></div>');
+                    var $newUser = $('<p class=user></p>');
+                    var $newMessage = $('<p class=message></p>');
+                    var $newDateTime = $('<span class=dateTime></span>');
+                    
+                    $newTweet.appendTo('.tester');  // .newfeed
+                    $newUser.addClass($('input#username').val()).attr('data-user', $('input#username').val()).text('@' + $('input#username').val() + ' ').appendTo($newTweet);
+                    $newMessage.text($('textarea').val()).appendTo($newTweet);
+                    $newDateTime.attr('data-livestamp', new Date().toUTCString()).appendTo($newTweet);
+                    
+                  });
+                  
+          
+              
+                });
+          
+              </script>
+          
+
+
+
+
+    <!-- JS files: jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+<<<<<<< HEAD
+</html>
+=======
+</html>
+>>>>>>> a6c83bf150d13e06751fb410026db172df416db2
